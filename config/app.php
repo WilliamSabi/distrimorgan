@@ -13,7 +13,10 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'DistriMorgan'),
+    // Redes Sociales
+    'redfacebook' => env('RED_FACEBOOK', '#'),
+    'redinstagram' => env('RED_INSTAGRAM', '#'),
 
     /*
     |--------------------------------------------------------------------------

@@ -1,0 +1,185 @@
+<header x-data="navbarHandler()" x-init="init()" class="absolute w-full z-50">
+    <!-- BLOQUE 1: Top Bar -->
+    <div x-transition class="bg-white text-dark">
+        <div class="container mx-auto px-2">
+            <div class="flex h-24 items-center justify-between gap-4">
+
+                <!-- Logo -->
+                <div class="flex justify-center">
+                    <a href="{{ route('home') }}" aria-label="Ir al inicio">
+                        <img src="{{ asset('storage/logo/logo_distrimorgan.png') }}"
+                             alt="Logo opanoticias"
+                             class="h-16 w-auto">
+                    </a>
+                </div>
+
+                <!-- Fecha -->
+                <div class="flex items-center gap-2 text-sm whitespace-nowrap">
+                    <i class='bx bx-calendar'></i>
+                    <span x-text="currentDate"></span>
+                    <a href="#" class="text-dark bg-primary text-sm rounded-full font-medium hover:text-white" aria-label="Iniciar cotizacion">
+                        <div class="text-center px-3 py-1 hover:bg-dark hover:rounded-full">
+                            Solicitar cotización
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Redes -->
+                <div class="flex items-center gap-2">
+                    <a href="{{ config('app.redfacebook') }}" aria-label="Red social de facebook" class="text-dark hover:text-primary"><i class='bx bxl-facebook-circle text-sm md:text-3xl'></i></a>
+                    <a href="{{ config('app.redinstagram') }}" aria-label="Red social de instagram" class="text-dark hover:text-primary"><i class='bx bxl-instagram text-sm md:text-3xl'></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BLOQUE 3: Menú principal -->
+    <nav x-data="{ scrolled: false }" @scroll.window="scrolled = window.scrollY > 130"
+        :class="scrolled 
+            ? 'bg-primary text-dark shadow-lg fixed top-0 z-[9999] w-full' 
+            : 'bg-primary text-dark relative rounded-xl w-[800px] justify-self-center -top-4'"
+        class="border-b transition-all duration-300">
+        <div class="container mx-auto px-2">
+            <div class="flex h-14 items-center justify-between">
+
+                <ul class="flex items-center gap-1 overflow-x-auto whitespace-nowrap scrollbar-hide">
+
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')" class="inline-flex items-center rounded-t-xl px-5 py-1 text-sm font-semibold !text-inherit hover:!text-white hover:bg-[#a17b1e] transition">
+                        Inicio
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('categorias.blog')" :active="request()->routeIs('categorias.blog')" class="inline-flex items-center rounded-t-xl px-5 py-1 text-sm font-semibold !text-inherit hover:!text-white hover:bg-[#a17b1e] transition">
+                        Categorías
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('marcas')" :active="request()->routeIs('marcas')" class="inline-flex items-center rounded-t-xl px-5 py-1 text-sm font-semibold !text-inherit hover:!text-white hover:bg-[#a17b1e] transition">
+                        Marcas
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('productos')" :active="request()->routeIs('productos')" class="inline-flex items-center rounded-t-xl px-5 py-1 text-sm font-semibold !text-inherit hover:!text-white hover:bg-[#a17b1e] transition">
+                        Productos
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('servicios')" :active="request()->routeIs('servicios')" class="inline-flex items-center rounded-t-xl px-5 py-1 text-sm font-semibold !text-inherit hover:!text-white hover:bg-[#a17b1e] transition">
+                        Servicios
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('contacto')" :active="request()->routeIs('contacto')" class="inline-flex items-center rounded-t-xl px-5 py-1 text-sm font-semibold !text-inherit hover:!text-white hover:bg-[#a17b1e] transition">
+                        Contacto
+                    </x-nav-link>
+
+                </ul>
+
+                <!-- BOTÓN BUSCADOR -->
+                <div x-data="{ openSearch: false }">
+
+                    <button aria-label="Abrir buscador"
+                        @click="openSearch = true"
+                        class="rounded-xl border px-3 py-2 transition hover:bg-dark hover:text-primary hover:border-primary"
+                    >
+                        <i class='bx bx-search text-xl'></i>
+                    </button>
+
+                    <!-- MODAL -->
+                    <div
+                        x-show="openSearch"
+                        x-transition
+                        class="fixed inset-0 z-[99999] flex items-center justify-center bg-black/70 p-4"
+                        style="display: none;"
+                    >
+
+                        <!-- Caja -->
+                        <div
+                            @click.away="openSearch = false"
+                            class="w-full max-w-2xl rounded-2xl bg-white shadow-2xl overflow-hidden"
+                        >
+
+                            <!-- Header -->
+                            <div class="flex items-center justify-between border-b px-6 py-4">
+                                <h2 class="text-xl font-bold text-gray-900">
+                                    ¿Cuál producto está buscando?
+                                </h2>
+
+                                <label for="buscador" class="sr-only">
+                                    Buscar
+                                </label>
+
+                                <button aria-label="Buscar producto"
+                                    @click="openSearch = false"
+                                    class="text-gray-500 hover:text-red-600"
+                                    id="buscador"
+                                >
+                                    <i class='bx bx-x text-3xl'></i>
+                                </button>
+                            </div>
+
+                            <!-- Formulario -->
+                            <form
+                                x-ref="searchForm"
+                                class="p-6"
+                                @submit.prevent="
+                                    const value = $refs.searchInput.value.trim();
+
+                                    if(value){
+                                        window.location.href = '/buscador/' + encodeURIComponent(value);
+                                    }
+                                "
+                            >
+
+                                <div class="relative">
+
+                                    <input
+                                        x-ref="searchInput"
+                                        type="text"
+                                        placeholder="Escribe el nombre del producto..."
+                                        class="w-full rounded-2xl border border-gray-300 px-5 py-4 pr-14 text-lg focus:border-primary focus:ring-primary"
+                                        autofocus
+                                    >
+
+                                    <button aria-label="Buscar la producto"
+                                        type="submit"
+                                        class="absolute right-3 top-1/2 -translate-y-1/2 text-primary hover:text-dark"
+                                    >
+                                        <i class='bx bx-search text-2xl'></i>
+                                    </button>
+
+                                </div>
+
+                                <p class="mt-3 text-sm text-gray-500">
+                                    Se mostrarán los productos relacionadas con el nombre
+                                </p>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<script>
+function navbarHandler() {
+    return {
+        currentDate: '',
+
+        init() {
+            this.updateDate();
+        },
+
+        updateDate() {
+            const now = new Date();
+            this.currentDate = now.toLocaleDateString('es-CO', {
+                weekday: 'long',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            });
+        }
+    }
+}
+</script>
+
