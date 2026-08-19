@@ -839,9 +839,36 @@
                 </div>
 
             </div>
+
+            <!-- Botón -->
+            <div class="mt-10 text-center" data-aos="fade-in">
+                <a
+                    href="#"
+                    class="inline-flex items-center gap-3 bg-primary transition rounded-full font-semibold text-black text-center px-3 py-1 hover:bg-dark hover:rounded-full hover:text-white"
+                >
+                    Ver Catálogo Completo
+
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-5 h-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M9 5l7 7-7 7"
+                        />
+                    </svg>
+
+                </a>
+            </div>
         </div>
     </section>
 
+    <!-- Seccion servicios -->
     <section class="py-28 bg-gray-100">
 
         <div class="max-w-7xl mx-auto px-6">
@@ -849,7 +876,7 @@
             <div class="grid md:grid-cols-3 gap-16 items-center">
 
                 <!-- Información -->
-                <div class="col-span-1" data-aos="fade-right">
+                <div class="col-span-2 sm:col-span-1" data-aos="fade-right">
 
                     <!-- Encabezado -->
                     <div class="flex items-center gap-4 mb-4">
@@ -1059,6 +1086,7 @@
 
     </section>
 
+    <!-- Seccion contacto -->
     <section id="contacto" class="py-32 bg-gray-100">
 
         <div class="max-w-7xl mx-auto px-6">

@@ -1,4 +1,6 @@
-<header x-data="navbarHandler()" x-init="init()" class="absolute w-full z-50">
+<header x-data="{ openMenu:false }" x-init="init()" class="absolute w-full z-50">
+    <!-- NAVBAR DESKTOP -->
+    <div class="hidden md:block" x-data="navbarHandler()" >
     <!-- BLOQUE 1: Top Bar -->
     <div x-transition class="bg-white text-dark">
         <div class="container mx-auto px-2">
@@ -159,6 +161,96 @@
             </div>
         </div>
     </nav>
+    </div>
+
+    <!-- NAVBAR MÓVIL -->
+    <div class="md:hidden fixed top-0 w-full bg-white shadow">
+
+        <div class="flex items-center justify-between px-5 h-20">
+
+            <!-- Logo -->
+            <a href="{{ route('home') }}">
+                <img
+                    src="{{ asset('storage/logo/logo_distrimorgan.png') }}"
+                    class="h-14"
+                    alt="Distri Morgan">
+            </a>
+
+            <!-- Botón hamburguesa -->
+            <button
+                @click="openMenu = !openMenu"
+                class="text-dark">
+
+                <i
+                    x-show="!openMenu"
+                    class='bx bx-menu text-4xl'>
+                </i>
+
+                <i
+                    x-show="openMenu"
+                    class='bx bx-x text-4xl'>
+                </i>
+
+            </button>
+
+        </div>
+
+        <!-- Menú desplegable -->
+        <div
+            x-show="openMenu"
+            x-transition
+            @click.away="openMenu = false"
+            class="bg-white border-t">
+
+            <div class="flex flex-col py-3">
+
+                <a href="{{ route('home') }}"
+                   class="px-6 py-3 hover:bg-primary hover:text-white">
+                    Inicio
+                </a>
+
+                <a href="#section-category"
+                   class="px-6 py-3 hover:bg-primary hover:text-white">
+                    Categorías
+                </a>
+
+                <a href="#section-brands"
+                   class="px-6 py-3 hover:bg-primary hover:text-white">
+                    Marcas
+                </a>
+
+                <a href="#section-products"
+                   class="px-6 py-3 hover:bg-primary hover:text-white">
+                    Productos
+                </a>
+
+                <a href="#section-services"
+                   class="px-6 py-3 hover:bg-primary hover:text-white">
+                    Servicios
+                </a>
+
+                <a href="#contacto"
+                   class="px-6 py-3 hover:bg-primary hover:text-white">
+                    Contacto
+                </a>
+
+                <!-- Botón cotización -->
+                <div class="px-6 mt-4">
+
+                    <a href="#"
+                        class="block bg-primary text-dark text-center rounded-xl py-3 font-semibold hover:bg-dark hover:text-white transition">
+
+                        Solicitar cotización
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 </header>
 
 <script>

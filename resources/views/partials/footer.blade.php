@@ -20,7 +20,7 @@
 
                     <img
                         src="{{ asset('storage/logo/logo-distri-white.png') }}"
-                        class="w-72"
+                        class="w-36"
                         alt="Distri Morgan">
 
                     <p class="mt-8 text-gray-200 text-lg max-w-md leading-relaxed">
@@ -40,7 +40,7 @@
                             <!-- Facebook -->
                             <a
                                 href="{{ config('app.redfacebook') }}"
-                                class="w-14 h-14 rounded-full bg-white flex items-center justify-center
+                                class="w-8 h-8 rounded-full bg-white flex items-center justify-center
                                 text-dark text-2xl hover:bg-primary transition">
 
                                 <i class='bx bxl-facebook'></i>
@@ -50,7 +50,7 @@
                             <!-- Instagram -->
                             <a
                                 href="{{ config('app.redinstagram') }}"
-                                class="w-14 h-14 rounded-full bg-white flex items-center justify-center
+                                class="w-8 h-8 rounded-full bg-white flex items-center justify-center
                                 text-dark text-2xl hover:bg-primary transition">
 
                                 <i class='bx bxl-instagram'></i>
@@ -189,7 +189,7 @@
                     <div class="flex items-center gap-6">
                         <p class="text-slate-400">
                             Desarrollado por
-                            <a href="https://sharrys.com/" class="font-semibold text-primary hover:text-dark" target="_blank" aria-label="Ir a Sharrys Tech">
+                            <a href="https://sharrys.com/" class="font-semibold text-primary hover:text-white" target="_blank" aria-label="Ir a Sharrys Tech">
                                 Sharrys Tech
                             </a>
                         </p>
